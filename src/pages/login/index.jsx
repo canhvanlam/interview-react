@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Logo from '../../images/logo.webp'
-import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link , useNavigate} from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 import Form from 'react-bootstrap/Form';
@@ -12,6 +11,7 @@ import { toast } from "react-toastify";
 import {useDispatch, useSelector} from 'react-redux';
 import queryString from 'query-string';
 import {userLoggedIn} from '../../redux/actions/user.actions';
+import { useMutation} from "@tanstack/react-query";
 
 const Login = () => {
     const [viewPassword, setViewPassword] = React.useState(false);
@@ -37,28 +37,37 @@ const Login = () => {
             [target.name]: target.value,
         });
     }
+    const mutationLogin = useMutation({
+        mutationFn: AuthApi.login
+    });
     const submitForm =  async () => {
-        await AuthApi.login(queryString.stringify(formData)).then((res) => {
-            if(res?.length > 0) {
-                dispatch(userLoggedIn(res[0]));
-                toast.success("Login up success.", {
-                    autoClose: 2000,
-                    position: "top-center",
-                });
-                navigate('/');
+        mutationLogin.mutate(
+            queryString.stringify(formData),
+            {
+                onSuccess : async(data) => {
+                    if(data?.length > 0) {
+                        dispatch(userLoggedIn(data[0]));
+                        toast.success("Login up success.", {
+                            autoClose: 2000,
+                            position: "top-center",
+                        });
+                        navigate('/');
+                    }
+                    else {
+                        toast.error("Email or password is incorrect.", {
+                            autoClose: 2000,
+                            position: "top-center",
+                        });
+                    }
+                },
+                onError: (error) => {
+                    toast.error("Login fail.", {
+                        autoClose: 2000,
+                        position: "top-center",
+                    });
+                }
             }
-            else {
-                toast.error("Email or password is incorrect.", {
-                    autoClose: 2000,
-                    position: "top-center",
-                });
-            }
-        }).catch((err) => {
-            toast.error("Login failed.", {
-                autoClose: 2000,
-                position: "top-center",
-            });
-        })
+        )
     }
     return (
         <LoadingOverlay active={statusLoading} spinner>

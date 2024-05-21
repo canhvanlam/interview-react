@@ -1,6 +1,5 @@
 import apiCall from '../../apis';
 import {API_METHOD} from '../../constants/application.constant';
-
 export const AuthApi = {
     signup: (payload) => {
         const endpoint = `/users`;
@@ -12,18 +11,14 @@ export const AuthApi = {
     },
     login :(queryString) => {
         const endpoint = `/users?${queryString}`;
-        return apiCall(API_METHOD.GET, endpoint);
+        return apiCall(API_METHOD.GET, endpoint).then(res => res);
     },
-    getUser :(id) => {
+    getUser : async(id) => {
         const endpoint = `/users/${id}`;
-        return apiCall(API_METHOD.GET, endpoint);
+        return await apiCall(API_METHOD.GET, endpoint).then(res => res);
     },
     getUserByEmail : (email) => {
         const endpoint = `/users?email=${email}`;
-        return apiCall(API_METHOD.GET, endpoint);
-    },
-    getUser2 : (id) => {
-        const endpoint = `/users/${id}`;
         return apiCall(API_METHOD.GET, endpoint).then(res => res);
-    },
+    }
 }

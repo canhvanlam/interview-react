@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from "../header";
 import LoadingOverlay from 'react-loading-overlay-nextgen';
-import {useDispatch, useSelector} from 'react-redux';
-
+import {useSelector} from 'react-redux';
+import  Header from '../header'
 const Layout = ({
     children,
     onChange,

@@ -1,6 +1,7 @@
 import {STORAGE_KEY} from '../constants/application.constant'
 import {toggleLoadding} from '../redux/actions/global.actions'
 export function setupAxios(axios, store, baseUrl) {
+  
     axios.defaults.baseURL = baseUrl;
     axios.interceptors.request.use(
       (config) => {

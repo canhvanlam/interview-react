@@ -2,7 +2,7 @@ import {STORAGE_KEY} from '../../constants/application.constant';
 import {USER_LOGGED_IN, USER_LOGGED_OUT} from '../../redux/actions/user.actions';
 
 const initialAuthState = {
-  user: undefined,
+  user: '',
   authToken: localStorage.getItem(STORAGE_KEY.ACCESS_TOKEN),
 };
 
@@ -19,7 +19,6 @@ const userReducer = (state = initialAuthState, action) => {
     }
     case USER_LOGGED_OUT: {
       localStorage.removeItem(STORAGE_KEY.ACCESS_TOKEN);
-
       return initialAuthState;
     }
 

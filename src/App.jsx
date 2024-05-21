@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import './assets/js/bootstrap.bundle.min';
 import 'react-toastify/dist/ReactToastify.css';
 import ROUTES from './constants/routes';
@@ -8,30 +8,31 @@ import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
 import "./App.css"
-import { useSelector } from "react-redux";
+import { AuthApi} from './apis/identity/auth';
+import { useQuery} from "@tanstack/react-query";
+import {userLoggedIn} from './redux/actions/user.actions';
+import {useDispatch, useSelector} from 'react-redux';
 
 function App() {
-  const { isAuthorized } = useSelector(({ auth }) => ({
-    isAuthorized: auth.authToken != null,
-  }));
+  const authToken = useSelector((state) => state.auth.authToken);
+  const dispatch = useDispatch();
+  const { data: userData = {}} = useQuery({
+    queryKey: ['userData'],
+    queryFn: () => AuthApi.getUser(authToken),
+    enabled: !!authToken
+  });
+  useEffect(() => {
+    if (userData && Object.keys(userData).length !== 0) {
+      dispatch(userLoggedIn(userData));
+    }
+  }, [userData, dispatch]);
   return (
     <Routes>
-      {isAuthorized ? (
-        <>
-          <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<PageNotFound />} />
-          <Route exact path={ROUTES.HOME} element={<HomePage />} />
-          <Route path={ROUTES.LOGIN} element={ <Navigate to={ROUTES.HOME} /> }/>
-          <Route path={ROUTES.SIGNUP} element={ <Navigate to={ROUTES.HOME} /> }/>
-        </>
-      ) :
-      (
-        <>
-          <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<Navigate to={ROUTES.LOGIN} />} />
-          <Route exact path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path={ROUTES.HOME} element={authToken ? <HomePage /> : <Navigate to={ROUTES.LOGIN} />} />
+          <Route exact path={ROUTES.LOGIN} element={<LoginPage />} />\
           <Route exact path={ROUTES.SIGNUP} element={<SignupPage />} />
-        </>
-      )
-      }
+          <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<PageNotFound />} />
+          
     </Routes>
   )
 }

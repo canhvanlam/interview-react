@@ -16,24 +16,12 @@ const Header = ({
     onChangeSort,
 }) => {
     const user = useSelector((state) => state.auth.user);
-    const authToken = useSelector((state) => state.auth.authToken);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
-    React.useEffect(() => {
-        const getUser =  async () => {
-            await AuthApi.getUser(authToken).then((res) => {
-                if(res){
-                    dispatch(userLoggedIn(res));
-                }
-            });
-        } 
-        getUser();
-      }, []);
-      const handleLogOut = () => {
+    const handleLogOut = () => {
         dispatch(userLoggedOut());
         navigate('/login');
-      }
+    }
     return (
         <div id="layout-wrapper">
             <header id="page-topbar">
