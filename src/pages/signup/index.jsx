@@ -49,7 +49,6 @@ const Register = () => {
                             autoClose: 2000,
                             position: "top-center",
                         });
-                        console.log("canhlv", data);
                     }
                     else {
                         mutationSignup.mutate(
