@@ -56,3 +56,6 @@
 .form-control:focus {
   background-color: var(--bs-topbar-search-bg) !important
 }
+.main-content {
+  margin-left: 0 !important;
+}
