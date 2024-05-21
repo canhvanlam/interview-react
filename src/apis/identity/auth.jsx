@@ -21,5 +21,9 @@ export const AuthApi = {
     getUserByEmail : (email) => {
         const endpoint = `/users?email=${email}`;
         return apiCall(API_METHOD.GET, endpoint);
-    }
+    },
+    getUser2 : (id) => {
+        const endpoint = `/users/${id}`;
+        return apiCall(API_METHOD.GET, endpoint).then(res => res);
+    },
 }

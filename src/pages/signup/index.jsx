@@ -60,7 +60,6 @@ const Register = () => {
             })
         }
     }
-    console.log("statusLoading", statusLoading)
     return (
         <LoadingOverlay active={statusLoading} spinner>
             <div className="wrapper-page">
@@ -123,7 +122,7 @@ const Register = () => {
                                     onChange={onChangeInput}
                                     />
                                 <div className='eye-icon' onClick={() => setViewPassword(!viewPassword)}>
-                                    <i className= {!viewPassword ? "bi bi-eye-slash" : "bi-eye"}></i>
+                                    <i className= {viewPassword ? "fas fa-eye" : "fas fa-eye-slash"}></i>
                                 </div>
                                 <Form.Control.Feedback type="invalid">
                                     Please enter password
@@ -153,7 +152,7 @@ const Register = () => {
                     </div>
                 </div> 
             </div>
-        </div>
+            </div>
         </LoadingOverlay>
         
     )

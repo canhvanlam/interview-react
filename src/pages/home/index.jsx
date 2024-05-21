@@ -122,7 +122,7 @@ const Home = () => {
                                                         <button className="btn btn-info" 
                                                             disabled={!comments[item.id]?.content}
                                                             onClick={() => handleAddComment(item.id, comments[item.id])}> 
-                                                            <i className="bi bi-send"></i>
+                                                            <i className=" fas fa-external-link-alt"></i>
                                                         </button>
                                                     </div>
                                                 </div>

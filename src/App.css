@@ -41,14 +41,7 @@
   background-image:none !important
 }
 #page-topbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1002;
-  background-color: var(--bs-header-bg);
-  -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, .05);
-  box-shadow: 1px 0 20px rgba(0, 0, 0, .05);
+  z-index: 10;
 }
 .app-search {
   padding: calc(32px / 2) 0;
@@ -59,4 +52,7 @@
 }
 .btn {
   --bs-btn-border-width: none !important
+}
+.form-control:focus {
+  background-color: var(--bs-topbar-search-bg) !important
 }

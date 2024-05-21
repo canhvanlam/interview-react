@@ -32,7 +32,7 @@ const Header = ({
       }, []);
       const handleLogOut = () => {
         dispatch(userLoggedOut());
-        navigate('/');
+        navigate('/login');
       }
     return (
         <div id="layout-wrapper">

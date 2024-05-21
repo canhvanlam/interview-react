@@ -1,9 +1,8 @@
 import { useState } from 'react'
-// import 'bootstrap/dist/css/bootstrap.css';
 import './assets/js/bootstrap.bundle.min';
 import 'react-toastify/dist/ReactToastify.css';
 import ROUTES from './constants/routes';
-import {Routes, Route, useSearchParams} from 'react-router-dom';
+import {Routes, Route, useSearchParams, Navigate} from 'react-router-dom';
 import PageNotFound from './pages/404';
 import HomePage from './pages/home';
 import LoginPage from './pages/login';
@@ -21,20 +20,18 @@ function App() {
         <>
           <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<PageNotFound />} />
           <Route exact path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.LOGIN} element={ <Navigate to={ROUTES.HOME} /> }/>
+          <Route path={ROUTES.SIGNUP} element={ <Navigate to={ROUTES.HOME} /> }/>
         </>
       ) :
       (
         <>
-          <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<LoginPage />} />
+          <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<Navigate to={ROUTES.LOGIN} />} />
           <Route exact path={ROUTES.LOGIN} element={<LoginPage />} />
           <Route exact path={ROUTES.SIGNUP} element={<SignupPage />} />
         </>
       )
       }
-      {/* <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<PageNotFound />} />
-      <Route exact path={ROUTES.HOME} element={<HomePage />} />
-      <Route exact path={ROUTES.LOGIN} element={<LoginPage />} />
-      <Route exact path={ROUTES.SIGNUP} element={<SignupPage />} /> */}
     </Routes>
   )
 }

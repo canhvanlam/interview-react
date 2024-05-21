@@ -69,7 +69,7 @@
       "createdAt": "2024-05-18",
       "description": "Trích sách song ngữ Sayings Of Youth - Lời Nói Của Thanh Xuân Thông tin sách song ngữ ở phần bình luận nhé ",
       "image": "https://media.beincom.com/image/variants/article/cover/61c37fee-8e1d-405c-a064-6b35822c56f4?width=640&q=100%20640w",
-      "count": 5,
+      "count": 6,
       "comments": [
         {
           "userName": "canhlv",
@@ -95,6 +95,11 @@
           "content": "Chúc thành công",
           "userName": "vilam",
           "fullName": "Lâm Huỳnh Phượng Vi"
+        },
+        {
+          "content": "Chuc ngu ngon",
+          "userName": "canhlv",
+          "fullName": "Lâm Văn Cảnh"
         }
       ]
     }
