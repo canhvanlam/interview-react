@@ -29,8 +29,8 @@ function App() {
   return (
     <Routes>
           <Route path={ROUTES.HOME} element={authToken ? <HomePage /> : <Navigate to={ROUTES.LOGIN} />} />
-          <Route exact path={ROUTES.LOGIN} element={<LoginPage />} />\
-          <Route exact path={ROUTES.SIGNUP} element={<SignupPage />} />
+          <Route exact path={ROUTES.LOGIN} element={!authToken ? <LoginPage /> :  <Navigate to={ROUTES.HOME} />} />\
+          <Route exact path={ROUTES.SIGNUP} element={!authToken ?  <SignupPage /> : <Navigate to={ROUTES.HOME} />} />
           <Route exact path={ROUTES.PAGE_NOT_FOUND} element={<PageNotFound />} />
           
     </Routes>

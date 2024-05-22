@@ -20,7 +20,7 @@ const Header = ({
     const navigate = useNavigate();
     const handleLogOut = () => {
         dispatch(userLoggedOut());
-        navigate('/login');
+        window.location.reload()
     }
     return (
         <div id="layout-wrapper">
@@ -52,6 +52,7 @@ const Header = ({
                              value={value}
                              onChange={onChange}
                              submit={submit}
+                             onChangeSort={onChangeSort}
                         />
                         <div className="dropdown d-inline-block user-dropdown">
                             <button type="button" className="btn header-item waves-effect" id="page-header-user-dropdown"
