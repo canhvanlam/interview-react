@@ -5,6 +5,18 @@ import { PostApi } from "../../apis/posts/post";
 import { AuthApi } from "../../apis/identity/auth";
 import queryString from 'query-string'; 
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+const sortOptions = [
+    {
+        id: 1, 
+        value:'Posting date',
+        key: "createdAt"
+    },
+    {
+        id: 2, 
+        value:' Number of comments',
+        key: "count"
+    }
+]
 const Home = () => {
     const queryClient = useQueryClient()
     const user = useSelector((state) => state.auth.user);
@@ -75,6 +87,7 @@ const Home = () => {
                 setKeywordSearch(strSearch);
             }}
             onChangeSort={handleSort}
+            dataSort = {sortOptions}
         >
             <div className="main-content">
                 <div className="page-content">
